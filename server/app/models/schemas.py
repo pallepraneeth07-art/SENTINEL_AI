@@ -72,9 +72,11 @@ class StatsResponse(BaseModel):
     pii_entities_protected: int
     avg_trust_score: float
     avg_latency_ms: float
+    supabase_connected: bool = False
 
 class HealthResponse(BaseModel):
     status: str
     service: str
     version: str
     timestamp: str
+    supabase_connected: bool = False

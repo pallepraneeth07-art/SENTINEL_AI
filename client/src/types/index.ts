@@ -65,6 +65,7 @@ export interface StatsResponse {
   pii_entities_protected: number;
   avg_trust_score: number;
   avg_latency_ms: number;
+  supabase_connected?: boolean;
 }
 
 export interface PredefinedAttack {

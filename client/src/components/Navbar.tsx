@@ -1,17 +1,19 @@
 import React from 'react';
-import { Shield, ShieldAlert, Activity, Terminal, ExternalLink, RefreshCw } from 'lucide-react';
+import { Shield, ShieldAlert, Activity, Terminal, ExternalLink, RefreshCw, Database } from 'lucide-react';
 import { API_BASE_URL } from '../services/api';
 
 interface NavbarProps {
   backendOnline: boolean | null;
   onRefreshHealth: () => void;
   isCheckingHealth: boolean;
+  supabaseConnected?: boolean;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
   backendOnline,
   onRefreshHealth,
-  isCheckingHealth
+  isCheckingHealth,
+  supabaseConnected
 }) => {
   return (
     <header className="sticky top-0 z-50 glass-panel border-b border-slate-800/80 bg-slate-950/80 backdrop-blur-xl">
@@ -73,6 +75,16 @@ export const Navbar: React.FC<NavbarProps> = ({
           <div className="hidden lg:flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-emerald-950/40 border border-emerald-800/40 text-emerald-300 text-xs font-medium">
             <Activity className="w-3.5 h-3.5 text-emerald-400" />
             <span>Zero-Trust Enforced</span>
+          </div>
+
+          {/* Supabase Database Status Badge */}
+          <div className={`hidden sm:flex items-center space-x-1.5 px-3 py-1.5 rounded-lg border text-xs font-medium ${
+            supabaseConnected
+              ? 'bg-emerald-950/50 border-emerald-800/50 text-emerald-300'
+              : 'bg-slate-900 border-slate-800 text-slate-400'
+          }`}>
+            <Database className={`w-3.5 h-3.5 ${supabaseConnected ? 'text-emerald-400' : 'text-slate-500'}`} />
+            <span>{supabaseConnected ? 'Supabase Synced' : 'Supabase Ready'}</span>
           </div>
 
           {/* Quick API Docs Link */}

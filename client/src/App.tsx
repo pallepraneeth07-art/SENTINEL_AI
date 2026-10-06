@@ -86,6 +86,7 @@ export const App: React.FC = () => {
         backendOnline={backendOnline}
         onRefreshHealth={refreshHealth}
         isCheckingHealth={isCheckingHealth}
+        supabaseConnected={stats.supabase_connected}
       />
 
       {/* Main Cockpit Body */}

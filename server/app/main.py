@@ -45,12 +45,14 @@ async def root():
 async def health_check():
     """
     Dedicated endpoint for Render/Cloud health monitoring.
-    Render uses this to verify the instance is active and ready to route traffic.
+    Returns service health and Supabase connection status.
     """
+    from app.core.supabase_client import supabase_service
     return {
         "status": "healthy",
         "service": settings.PROJECT_NAME,
         "version": settings.VERSION,
+        "supabase_connected": supabase_service.is_connected,
         "timestamp": datetime.now(timezone.utc).isoformat()
     }
 
