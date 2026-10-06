@@ -91,23 +91,6 @@ export const App: React.FC = () => {
 
       {/* Main Cockpit Body */}
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
-        {/* Banner notification if Render service is cold-booting */}
-        {backendOnline === false && (
-          <div className="rounded-xl p-3 bg-amber-950/40 border border-amber-800/60 flex items-center justify-between text-xs text-amber-200">
-            <div className="flex items-center space-x-2">
-              <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
-              <span>
-                Backend on Render is in sleep mode or booting ({API_BASE_URL}). The dashboard is operating in high-fidelity client simulation mode.
-              </span>
-            </div>
-            <button
-              onClick={refreshHealth}
-              className="text-xs font-semibold underline hover:text-white"
-            >
-              Re-check Server
-            </button>
-          </div>
-        )}
 
         {/* 1. Global Gateway Metrics */}
         <section aria-label="Global Gateway Metrics">
