@@ -1,5 +1,21 @@
 import os
+from pathlib import Path
 from typing import List
+
+# Automatically load .env if present (checks current and project root)
+try:
+    from dotenv import load_dotenv
+    # Root .env is 3 levels up from server/app/core/config.py
+    root_env = Path(__file__).resolve().parents[3] / ".env"
+    server_env = Path(__file__).resolve().parents[2] / ".env"
+    if root_env.exists():
+        load_dotenv(root_env)
+    elif server_env.exists():
+        load_dotenv(server_env)
+    else:
+        load_dotenv()
+except ImportError:
+    pass
 
 try:
     from pydantic_settings import BaseSettings
